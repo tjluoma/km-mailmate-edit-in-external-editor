@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Activate</key>
+		<string>Normal</string>
+		<key>IsActive</key>
+		<true/>
+		<key>Macros</key>
+		<array>
+			<dict>
+				<key>Actions</key>
+				<array>
+					<dict>
+						<key>Conditions</key>
+						<dict>
+							<key>ConditionList</key>
+							<array>
+								<dict>
+									<key>ConditionType</key>
+									<string>Menu</string>
+									<key>MenuConditionSelectionType</key>
+									<string>Is</string>
+									<key>MenuConditionType</key>
+									<string>IsNotEnabled</string>
+									<key>MenuModifiers</key>
+									<integer>256</integer>
+									<key>MenuShortcut</key>
+									<string>C</string>
+									<key>MenuTitle</key>
+									<string>Save</string>
+								</dict>
+							</array>
+							<key>ConditionListMatch</key>
+							<string>All</string>
+						</dict>
+						<key>ElseActions</key>
+						<array/>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>IfThenElse</string>
+						<key>ThenActions</key>
+						<array>
+							<dict>
+								<key>IsActive</key>
+								<true/>
+								<key>IsDisclosed</key>
+								<true/>
+								<key>MacroActionType</key>
+								<string>Notification</string>
+								<key>SoundName</key>
+								<string>Basso</string>
+								<key>Subtitle</key>
+								<string>Are you in a New Message window?</string>
+								<key>Text</key>
+								<string>"Save" is not enabled.</string>
+								<key>Title</key>
+								<string>%ExecutingMacro%</string>
+							</dict>
+							<dict>
+								<key>Action</key>
+								<string>CancelThisMacro</string>
+								<key>IsActive</key>
+								<true/>
+								<key>IsDisclosed</key>
+								<true/>
+								<key>MacroActionType</key>
+								<string>Cancel</string>
+							</dict>
+						</array>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>0</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>7</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>Notification</string>
+						<key>SoundName</key>
+						<string></string>
+						<key>Subtitle</key>
+						<string>%ExecutingMacro%</string>
+						<key>Text</key>
+						<string>You must SAVE and QUIT to return to MailMate.</string>
+						<key>Title</key>
+						<string>Launching External Editor...</string>
+					</dict>
+					<dict>
+						<key>DisplayKind</key>
+						<string>Briefly</string>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>ExecuteShellScript</string>
+						<key>Path</key>
+						<string></string>
+						<key>Text</key>
+						<string>#!/bin/zsh -f
+
+	# which app do you want to use as your external editor?
+MM_APP="MultiMarkdown Composer"
+
+	# where should email drafts be stored?
+	# this directory will be created if it does not exist
+MM_TEMP_DIR="$HOME/Library/Application Support/MailMate"
+
+# create a new file from pasteboard and open it in MultiMarkdown Composer
+#
+# From:	Timothy J. Luoma
+# Mail:	luomat at gmail dot com
+# Date:	2013-12-13
+
+zmodload zsh/datetime
+
+TIME=$(strftime "%Y-%m-%d--%H.%M.%S" "$EPOCHSECONDS")
+
+NAME="$0:t:r"
+
+[[ ! -d "$MM_TEMP_DIR" ]] &amp;&amp; mkdir -p "$MM_TEMP_DIR"
+
+TEMPFILE="$MM_TEMP_DIR/$TIME.md"
+
+# Open the
+
+/usr/bin/touch "$TEMPFILE"
+
+/usr/bin/pbpaste &gt;&gt; "$TEMPFILE"
+
+/usr/bin/open -n -W -a "$MM_APP" "$TEMPFILE" &amp;&amp; \
+/usr/bin/pbcopy &lt; "$TEMPFILE"
+
+EXIT="$?"
+
+if [ "$EXIT" = "0" ]
+then
+
+		/usr/bin/open -a "MailMate"
+
+			# move temp file to trash
+		/bin/mv -n "$TEMPFILE" "$HOME/.Trash/"
+
+		exit 0
+else
+		echo "An error occurred [$EXIT], reopening $TEMPFILE"
+
+		/usr/bin/open -a "$MM_APP" "$TEMPFILE"
+
+		exit 1
+fi
+
+exit
+#
+#EOF
+</string>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+						<key>TrimResults</key>
+						<true/>
+						<key>TrimResultsNew</key>
+						<true/>
+						<key>UseText</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>AllWindows</key>
+						<true/>
+						<key>AlreadyActivatedActionType</key>
+						<string>Normal</string>
+						<key>Application</key>
+						<dict>
+							<key>BundleIdentifier</key>
+							<string>com.freron.MailMate</string>
+							<key>Name</key>
+							<string>MailMate</string>
+							<key>NewFile</key>
+							<string>/Applications/MailMate.app</string>
+						</dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>MacroActionType</key>
+						<string>ActivateApplication</string>
+						<key>ReopenWindows</key>
+						<false/>
+						<key>StopOnFailure</key>
+						<false/>
+						<key>TimeOutAbortsMacro</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>IsActive</key>
+						<true/>
+						<key>IsDisclosed</key>
+						<true/>
+						<key>KeyCode</key>
+						<integer>9</integer>
+						<key>MacroActionType</key>
+						<string>SimulateKeystroke</string>
+						<key>Modifiers</key>
+						<integer>256</integer>
+						<key>ReleaseAll</key>
+						<false/>
+					</dict>
+				</array>
+				<key>IsActive</key>
+				<true/>
+				<key>ModificationDate</key>
+				<real>408684320.05064797</real>
+				<key>Name</key>
+				<string>Edit in MultiMarkdown Composer</string>
+				<key>Triggers</key>
+				<array>
+					<dict>
+						<key>FireType</key>
+						<string>Pressed</string>
+						<key>KeyCode</key>
+						<integer>46</integer>
+						<key>MacroTriggerType</key>
+						<string>HotKey</string>
+						<key>Modifiers</key>
+						<integer>6144</integer>
+					</dict>
+				</array>
+				<key>UID</key>
+				<string>24BEBBBB-14F1-4E20-8463-2633A03B186D</string>
+			</dict>
+		</array>
+		<key>Name</key>
+		<string>» MailMate</string>
+		<key>Targeting</key>
+		<dict>
+			<key>Targeting</key>
+			<string>Included</string>
+			<key>TargetingApps</key>
+			<array>
+				<dict>
+					<key>BundleIdentifier</key>
+					<string>com.freron.MailMate</string>
+					<key>Name</key>
+					<string>MailMate</string>
+					<key>NewFile</key>
+					<string>/Applications/MailMate.app</string>
+				</dict>
+			</array>
+		</dict>
+		<key>UID</key>
+		<string>415E657C-7B73-404A-8D02-375CDA85010D</string>
+	</dict>
+</array>
+</plist>
