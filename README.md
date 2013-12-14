@@ -11,19 +11,19 @@ I mean, sure, you could do:
 2.	Cut
 3.	Switch to MultiMarkdown Composer
 4.	Create a new file
-5.	Paste 
+5.	Paste
 6.	Save it, just in case something happens
-7.	Write the email 
+7.	Write the email
 8.	Select All
-9.	Cut 
-10.	Switch back to MailMate 
+9.	Cut
+10.	Switch back to MailMate
 11.	Paste
 
 You could do that *like an animal*™ but wouldn't you rather:
 
 1.	Press a keyboard shortcut, have your email automatically saved to a temporary file, have that file opened in MultiMarkdown Composer (or any other text editor you prefer)
 2.	Write the email
-3.	When finished, save the file 
+3.	When finished, save the file
 4.	Quit MultiMarkdown Composer
 
 and have the contents of that temporary file pasted back into your MailMate compose window?
@@ -69,4 +69,5 @@ The only special instruction to remember is that when you are done using the ext
 [Markdown]: http://daringfireball.net/projects/markdown/.
 [MailMate]: http://freron.com/
 [Keyboard Maestro]: http://www.keyboardmaestro.com/main/
-[MailMate-Edit-in-External-App.kmmacros]: https://github.com/tjluoma/km-mailmate-edit-in-external-editor
+[MailMate-Edit-in-External-App.kmmacros]: https://raw.github.com/tjluoma/km-mailmate-edit-in-external-editor/master/MailMate-Edit-in-External-App.kmmacros
+
